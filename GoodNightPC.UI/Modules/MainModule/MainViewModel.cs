@@ -1,13 +1,26 @@
 ﻿using Caliburn.Micro;
-using GoodNightPC.Entities;
+using GoodNightPC.Business;
+using GoodNightPC.Entities.DTO;
+using GoodNightPC.Entities.Enums;
 
 namespace GoodNightPC.UI.Modules.MainModule
 {
-	public class MainViewModel : Screen
+    public class MainViewModel : Screen
 	{
-		#region Mode Properties
+		private readonly PowerManager _powerManager;
 
-		private bool _shutdownIsChecked;
+        #region Constructor
+
+        public MainViewModel(PowerManager pm)
+        {
+            _powerManager = pm;
+        }
+
+        #endregion
+
+        #region Mode Properties
+
+        private bool _shutdownIsChecked;
 		private bool _hibernateIsChecked;
 		private bool _restartIsChecked;
 
@@ -54,6 +67,29 @@ namespace GoodNightPC.UI.Modules.MainModule
 				return ModesEnum.RESTART;
 
 			return ModesEnum.NONE;
+		}
+
+		#endregion
+
+		#region Methods
+
+		public void StartTimer()
+		{
+			var mode = GetSelectedMode();
+			if(mode != ModesEnum.NONE)
+			{
+				CommandStructure cs = new CommandStructure()
+				{
+					Mode = mode
+				};
+
+				_powerManager.ExecuteAction(cs);
+			}
+		}
+
+		public void StopTimer()
+		{
+			_powerManager.StopAction();
 		}
 
 		#endregion

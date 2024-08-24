@@ -24,19 +24,19 @@
         
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!--TITLE-->
-        <Grid Grid.Row="0" Height="50">
+        <Grid Grid.Row="0" Height="50" Visibility="Collapsed">
             <TextBlock Text="Good Night PC" VerticalAlignment="Center" FontSize="20" FontFamily="Coolvetica"/>
         </Grid>
 
         <!--MAIN-->
         <Grid Grid.Row="1" >
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                <StackPanel Orientation="Horizontal" Margin="20 0 0 0" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="20 10 0 0" HorizontalAlignment="Center">
                     
                     <!--SHUTDOWN TOGGLE-->
                     <ToggleButton x:Name="ShutdownToggleButton" Margin="0" IsChecked="{Binding ShutdownIsChecked, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
@@ -158,5 +158,12 @@
             </StackPanel>
         </Grid>
 
+
+        <Grid Grid.Row="2">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                <Grid Background="LightGray" HorizontalAlignment="Stretch" Height="1" Margin="20 10"/>
+                <Button Content="Start Timer" cal:Message.Attach="StartTimer()" HorizontalAlignment="Right" Width="100" Margin="0 10 10 10"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using GoodNightPC.Business;
 using GoodNightPC.UI.Modules.MainModule;
 using System.Reflection;
 using System.Windows;
@@ -22,6 +23,7 @@ namespace GoodNightPC.UI
 
 			_container.PerRequest<ShellViewModel>();
 			_container.PerRequest<MainViewModel>();
+			_container.PerRequest<PowerManager>();
 		}
 
 		protected override object GetInstance(Type service, string key)
