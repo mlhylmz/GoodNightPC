@@ -2,7 +2,11 @@
 
 namespace GoodNightPC.UI.Modules.MainModule
 {
-	public class ShellViewModel
+	public class ShellViewModel : Conductor<object>
 	{
-	}
+        public ShellViewModel(MainViewModel mainView)
+        {
+            ActiveItem = mainView;
+        }
+    }
 }

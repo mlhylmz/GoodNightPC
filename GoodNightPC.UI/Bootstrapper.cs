@@ -21,6 +21,7 @@ namespace GoodNightPC.UI
 			_container.Singleton<IEventAggregator, EventAggregator>();
 
 			_container.PerRequest<ShellViewModel>();
+			_container.PerRequest<MainViewModel>();
 		}
 
 		protected override object GetInstance(Type service, string key)
