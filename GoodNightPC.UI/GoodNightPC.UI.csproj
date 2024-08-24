@@ -9,12 +9,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Icons\hibernate-white.png" />
+    <None Remove="Resources\Icons\hibernate.png" />
+    <None Remove="Resources\Icons\restart-white.png" />
+    <None Remove="Resources\Icons\restart.png" />
+    <None Remove="Resources\Icons\shutdown-white.png" />
+    <None Remove="Resources\Icons\shutdown.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Caliburn.Micro" Version="4.0.212" />
     <PackageReference Include="HandyControl" Version="3.5.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GoodNightPC.Business\GoodNightPC.Business.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Icons\hibernate-white.png" />
+    <Resource Include="Resources\Icons\hibernate.png" />
+    <Resource Include="Resources\Icons\restart-white.png" />
+    <Resource Include="Resources\Icons\restart.png" />
+    <Resource Include="Resources\Icons\shutdown-white.png" />
+    <Resource Include="Resources\Icons\shutdown.png" />
   </ItemGroup>
 
 </Project>

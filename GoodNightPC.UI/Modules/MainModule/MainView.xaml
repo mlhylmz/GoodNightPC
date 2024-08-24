@@ -3,10 +3,158 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:GoodNightPC.UI.Modules.MainModule"
-             mc:Ignorable="d"
+             mc:Ignorable="d" Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.Resources>
+            <Style x:Key="ModeToggleStyle" TargetType="ToggleButton" BasedOn="{StaticResource {x:Type ToggleButton}}">
+                <Setter Property="Content" Value=""/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="Width" Value="180"/>
+                <Setter Property="Height" Value="40"/>
+                <Setter Property="Margin" Value="10 0 0 0"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <EventSetter Event="Checked" Handler="ToggleButton_Checked"/>
+            </Style>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--TITLE-->
+        <Grid Grid.Row="0" Height="50">
+            <TextBlock Text="Good Night PC" VerticalAlignment="Center" FontSize="20" FontFamily="Coolvetica"/>
+        </Grid>
+
+        <!--MAIN-->
+        <Grid Grid.Row="1" >
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                <StackPanel Orientation="Horizontal" Margin="20 0 0 0" HorizontalAlignment="Center">
+                    
+                    <!--SHUTDOWN TOGGLE-->
+                    <ToggleButton x:Name="ShutdownToggleButton" Margin="0">
+                        <ToggleButton.Style>
+                            <Style  TargetType="ToggleButton" BasedOn="{StaticResource ModeToggleStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../../Resources/Icons/shutdown.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="0 5"/>
+                                                <TextBlock Margin="5 0 0 0" Text="Shutdown" Foreground="Red" FontSize="20" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                
+                                <Style.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" Value="Red"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                        
+                                        <Setter Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="../../Resources/Icons/shutdown-white.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="0 5"/>
+                                                        <TextBlock Margin="5 0 0 0" Text="Shutdown" Foreground="White" FontSize="20" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+                                
+                            </Style>
+                        </ToggleButton.Style>
+                    </ToggleButton>
+
+                    <!--HIBERNATE TOGGLE-->
+                    <ToggleButton x:Name="HibernateToggleButton">
+                        <ToggleButton.Style>
+                            <Style TargetType="ToggleButton" BasedOn="{StaticResource ModeToggleStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../../Resources/Icons/hibernate.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="0 3"/>
+                                                <TextBlock Margin="5 0 0 0" Text="Hibernate" Foreground="DodgerBlue" FontSize="20" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" Value="DodgerBlue"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+
+                                        <Setter Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="../../Resources/Icons/hibernate-white.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="0 3"/>
+                                                        <TextBlock Margin="5 0 0 0" Text="Hibernate" Foreground="White" FontSize="20" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </ToggleButton.Style>
+                    </ToggleButton>
+
+                    <!--RESTART TOGGLE-->
+                    <ToggleButton x:Name="RestartToggleButton">
+
+                        <ToggleButton.Style>
+                            <Style TargetType="ToggleButton" BasedOn="{StaticResource ModeToggleStyle}">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="../../Resources/Icons/restart.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="0 3"/>
+                                                <TextBlock Margin="5 0 0 0" Text="Restart" Foreground="#666666" FontSize="20" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+
+                                <Style.Triggers>
+                                    <Trigger Property="IsChecked" Value="True">
+                                        <Setter Property="Background" Value="#666666"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+
+                                        <Setter Property="ContentTemplate">
+                                            <Setter.Value>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <Image Source="../../Resources/Icons/restart-white.png" RenderOptions.BitmapScalingMode="HighQuality" Margin="0 3"/>
+                                                        <TextBlock Margin="5 0 0 0" Text="Restart" Foreground="White" FontSize="20" VerticalAlignment="Center"/>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </ToggleButton.Style>
+                        
+                    </ToggleButton>
+
+                </StackPanel>
+
+                <Grid Background="LightGray" HorizontalAlignment="Stretch" Height="1" Margin="20 10"/>
+
+            </StackPanel>
+        </Grid>
+
     </Grid>
 </UserControl>
