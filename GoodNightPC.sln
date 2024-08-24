@@ -6,9 +6,15 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodNightPC.UI", "GoodNightPC.UI\GoodNightPC.UI.csproj", "{E9F4A7DD-0EF6-4C1B-BCD4-E4B80EBC12A8}"
 	ProjectSection(ProjectDependencies) = postProject
 		{67F94B79-8045-4707-8F80-981ED2F211EE} = {67F94B79-8045-4707-8F80-981ED2F211EE}
+		{C9198C2C-8801-4749-846C-EBE10D9D8236} = {C9198C2C-8801-4749-846C-EBE10D9D8236}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodNightPC.Business", "GoodNightPC.Business\GoodNightPC.Business.csproj", "{67F94B79-8045-4707-8F80-981ED2F211EE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C9198C2C-8801-4749-846C-EBE10D9D8236} = {C9198C2C-8801-4749-846C-EBE10D9D8236}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodNightPC.Entities", "GoodNightPC.Entities\GoodNightPC.Entities.csproj", "{C9198C2C-8801-4749-846C-EBE10D9D8236}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +30,10 @@ Global
 		{67F94B79-8045-4707-8F80-981ED2F211EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67F94B79-8045-4707-8F80-981ED2F211EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67F94B79-8045-4707-8F80-981ED2F211EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9198C2C-8801-4749-846C-EBE10D9D8236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9198C2C-8801-4749-846C-EBE10D9D8236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9198C2C-8801-4749-846C-EBE10D9D8236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9198C2C-8801-4749-846C-EBE10D9D8236}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
