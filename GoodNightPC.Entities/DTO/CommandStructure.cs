@@ -6,6 +6,6 @@ namespace GoodNightPC.Entities.DTO
 	{
 		public ModesEnum Mode { get; set; }
 		public Preferences Preferences { get; set; }
-		public TimeSpan DurationSecond { get; set; }
+		public TimeSpan Duration { get; set; }
 	}
 }

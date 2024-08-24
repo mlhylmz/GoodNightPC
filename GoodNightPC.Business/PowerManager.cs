@@ -1,4 +1,5 @@
 ﻿using GoodNightPC.Entities.DTO;
+using System.Diagnostics;
 
 namespace GoodNightPC.Business
 {
@@ -24,22 +25,43 @@ namespace GoodNightPC.Business
 
 		public void StopAction()
 		{
-
+			var prompt = $"/c shutdown /a";
+			SendToCommandPrompt(prompt);
 		}
 
 		private void Shutdown(CommandStructure command)
 		{
-
+			var prompt = $"/c shutdown /s /t {command.Duration.TotalSeconds}";
+			SendToCommandPrompt(prompt);
 		}
 
 		private void Hibernate(CommandStructure command)
 		{
-
+			var prompt = $"/c shutdown /h /t {command.Duration.TotalSeconds}";
+			SendToCommandPrompt(prompt);
 		}
 
 		private void Restart(CommandStructure command)
 		{
+			var prompt = $"/c shutdown /r /t {command.Duration.TotalSeconds}";
+			SendToCommandPrompt(prompt);
+		}
 
+		private void SendToCommandPrompt(string prompt)
+		{
+			var processStartInfo = new ProcessStartInfo
+			{
+				FileName = "cmd.exe",
+				Arguments = prompt,
+				CreateNoWindow = true,
+				UseShellExecute = false 
+			};
+
+			using (Process process = new Process())
+			{
+				process.StartInfo = processStartInfo;
+				process.Start();
+			}
 		}
 	}
 }

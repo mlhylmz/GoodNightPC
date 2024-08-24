@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Text.RegularExpressions;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 
 namespace GoodNightPC.UI.Modules.MainModule
@@ -11,13 +12,14 @@ namespace GoodNightPC.UI.Modules.MainModule
 		public MainView()
 		{
 			InitializeComponent();
+			ShutdownToggleButton.IsChecked = true;
 		}
 
 		private void ToggleButton_Checked(object sender, System.Windows.RoutedEventArgs e)
 		{
 			var name = ((ToggleButton)sender).Name;
 
-			switch(name)
+			switch (name)
 			{
 				case "ShutdownToggleButton":
 					HibernateToggleButton.IsChecked = false;
@@ -36,5 +38,10 @@ namespace GoodNightPC.UI.Modules.MainModule
 			}
 		}
 
+		Regex _regex = new Regex("[^0-9]+");
+		private void TextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+		{
+			e.Handled = _regex.IsMatch(e.Text);
+		}
 	}
 }

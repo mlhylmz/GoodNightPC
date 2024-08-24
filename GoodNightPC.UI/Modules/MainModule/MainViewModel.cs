@@ -5,22 +5,60 @@ using GoodNightPC.Entities.Enums;
 
 namespace GoodNightPC.UI.Modules.MainModule
 {
-    public class MainViewModel : Screen
+	public class MainViewModel : Screen
 	{
 		private readonly PowerManager _powerManager;
 
-        #region Constructor
 
-        public MainViewModel(PowerManager pm)
-        {
-            _powerManager = pm;
-        }
 
-        #endregion
+		#region Properties
+		public List<TimeUnits> TimeUnits { get; set; }
 
-        #region Mode Properties
+		private TimeUnits _selectedTimeUnit = Entities.Enums.TimeUnits.Second;
+		public TimeUnits SelectedTimeUnit
+		{
+			get => _selectedTimeUnit;
+			set
+			{
+				if(value == _selectedTimeUnit) return;
+				_selectedTimeUnit = value;
+				NotifyOfPropertyChange(() => SelectedTimeUnit);
+			}
+		}
 
-        private bool _shutdownIsChecked;
+
+		private int _timeDuration = 1;
+		public int TimeDuration
+		{
+			get => _timeDuration;
+			set
+			{
+				if(value == _timeDuration) return;
+				_timeDuration = value;
+				NotifyOfPropertyChange(() => TimeDuration);
+			}
+		}
+		#endregion
+
+		#region Constructor
+
+		public MainViewModel(PowerManager pm)
+		{
+			_powerManager = pm;
+			TimeUnits = new List<TimeUnits>()
+			{
+				Entities.Enums.TimeUnits.Second,
+				Entities.Enums.TimeUnits.Minute,
+				Entities.Enums.TimeUnits.Hour,
+				Entities.Enums.TimeUnits.Day
+			};
+		}
+
+		#endregion
+
+		#region Mode Properties
+
+		private bool _shutdownIsChecked;
 		private bool _hibernateIsChecked;
 		private bool _restartIsChecked;
 
@@ -63,7 +101,7 @@ namespace GoodNightPC.UI.Modules.MainModule
 				return ModesEnum.SHUTDOWN;
 			else if (HibernateIsChecked)
 				return ModesEnum.HIBERNATE;
-			else if(RestartIsChecked)
+			else if (RestartIsChecked)
 				return ModesEnum.RESTART;
 
 			return ModesEnum.NONE;
@@ -76,11 +114,12 @@ namespace GoodNightPC.UI.Modules.MainModule
 		public void StartTimer()
 		{
 			var mode = GetSelectedMode();
-			if(mode != ModesEnum.NONE)
+			if (mode != ModesEnum.NONE)
 			{
 				CommandStructure cs = new CommandStructure()
 				{
-					Mode = mode
+					Mode = mode,
+					Duration =  GetDuration()
 				};
 
 				_powerManager.ExecuteAction(cs);
@@ -90,6 +129,26 @@ namespace GoodNightPC.UI.Modules.MainModule
 		public void StopTimer()
 		{
 			_powerManager.StopAction();
+		}
+
+		private TimeSpan GetDuration()
+		{
+			switch (SelectedTimeUnit)
+			{
+				case Entities.Enums.TimeUnits.Second:
+					return TimeSpan.FromSeconds(TimeDuration);
+
+				case Entities.Enums.TimeUnits.Minute:
+					return TimeSpan.FromMinutes(TimeDuration);
+
+				case Entities.Enums.TimeUnits.Hour:
+					return TimeSpan.FromHours(TimeDuration);
+
+				case Entities.Enums.TimeUnits.Day:
+					return TimeSpan.FromDays(TimeDuration);
+			}
+
+			return TimeSpan.FromSeconds(0);
 		}
 
 		#endregion

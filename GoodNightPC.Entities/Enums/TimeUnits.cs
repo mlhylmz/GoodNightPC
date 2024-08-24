@@ -2,9 +2,9 @@
 {
 	public enum TimeUnits
 	{
-		SECOND,
-		MINUTE,
-		HOUR,
-		DAY
+		Second,
+		Minute,
+		Hour,
+		Day
 	}
 }
