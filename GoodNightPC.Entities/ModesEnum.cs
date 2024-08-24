@@ -2,6 +2,7 @@
 {
 	public enum ModesEnum
 	{
+		NONE,
 		SHUTDOWN,
 		HIBERNATE,
 		RESTART
