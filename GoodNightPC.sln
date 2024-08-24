@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodNightPC.UI", "GoodNightPC.UI\GoodNightPC.UI.csproj", "{E9F4A7DD-0EF6-4C1B-BCD4-E4B80EBC12A8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{67F94B79-8045-4707-8F80-981ED2F211EE} = {67F94B79-8045-4707-8F80-981ED2F211EE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoodNightPC.Business", "GoodNightPC.Business\GoodNightPC.Business.csproj", "{67F94B79-8045-4707-8F80-981ED2F211EE}"
 EndProject
