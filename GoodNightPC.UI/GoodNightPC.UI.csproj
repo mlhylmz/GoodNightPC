@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GoodNightPC.Business\GoodNightPC.Business.csproj" />
+    <ProjectReference Include="..\GoodNightPC.Entities\GoodNightPC.Entities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
