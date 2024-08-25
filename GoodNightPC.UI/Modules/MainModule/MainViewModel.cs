@@ -11,6 +11,30 @@ namespace GoodNightPC.UI.Modules.MainModule
 
 		#region Properties
 
+		private bool _isTimerWorking;
+		public bool IsTimerWorking
+		{
+			get => _isTimerWorking;
+			set
+			{
+				if (value == _isTimerWorking) return;
+				_isTimerWorking = value;
+				NotifyOfPropertyChange(() => IsTimerWorking);
+            }
+		}
+
+		private TimeSpan _countDownTimer;
+		public TimeSpan CountDownTimer
+		{
+			get => _countDownTimer;
+			set
+			{
+				if(value == _countDownTimer) return;
+				_countDownTimer = value;
+				NotifyOfPropertyChange(() => CountDownTimer);
+			}
+		}
+
 		#region Selected Time Properties
 
 		public List<TimeUnits> TimeUnits { get; set; }
@@ -40,7 +64,7 @@ namespace GoodNightPC.UI.Modules.MainModule
 		}
 
 
-		private DateTime _selectedDateTime = DateTime.Now;
+		private DateTime _selectedDateTime = DateTime.Now.AddHours(1);
 
 		public DateTime SelectedDateTime
 		{
@@ -158,24 +182,54 @@ namespace GoodNightPC.UI.Modules.MainModule
 		
 		#region Methods
 
-		public void StartTimer()
+		public void StartTimerButton()
 		{
 			var mode = GetSelectedMode();
 			if (mode != ModesEnum.NONE)
 			{
+				var durationTimeSpan = GetDuration();
 				CommandStructure cs = new CommandStructure()
 				{
 					Mode = mode,
-					Duration =  GetDuration()
+					Duration = durationTimeSpan
 				};
 
 				_powerManager.ExecuteAction(cs);
+
+				if(_timerCts != null)
+					_timerCts.Cancel();
+			
+				_timerCts = new CancellationTokenSource();
+
+				Task.Run(() => StartTimer(durationTimeSpan, _timerCts.Token));
 			}
 		}
 
-		public void StopTimer()
+		private CancellationTokenSource _timerCts;
+		private async Task StartTimer(TimeSpan durationTimeSpan, CancellationToken token)
+		{
+			CountDownTimer = durationTimeSpan;
+			IsTimerWorking = true;
+
+			while (CountDownTimer.TotalSeconds > 1)
+			{
+				if (token.IsCancellationRequested)
+					break;
+
+				var oneSecTimeSpan = TimeSpan.FromSeconds(1);
+				CountDownTimer = CountDownTimer - oneSecTimeSpan;
+				await Task.Delay(1000);
+			}
+
+			IsTimerWorking = false;
+		}
+
+		public void StopTimerButton()
 		{
 			_powerManager.StopAction();
+
+			if(_timerCts != null)
+				_timerCts.Cancel();
 		}
 
 		private TimeSpan GetDuration()

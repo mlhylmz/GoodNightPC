@@ -202,10 +202,28 @@
                         </StackPanel>
                     </StackPanel>
 
-
-
                 </StackPanel>
 
+
+                <!--<hc:FlipClock x:Name="Flipp" DisplayTime="{Binding CountDownTimer}"/>-->
+
+            </StackPanel>
+
+            <StackPanel Margin="0 0 20 0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Visibility" Value="Hidden"/>
+
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsTimerWorking}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                
+                <Image Source="../../Resources/Icons/timer.png" Width="50" Margin="0 5 10 0" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <TextBlock Foreground="DodgerBlue" Width="150" Text="{Binding CountDownTimer, StringFormat={}{0:hh\\:mm\\:ss}}" FontWeight="Light" FontSize="40" VerticalAlignment="Center"/>
             </StackPanel>
         </Grid>
 
@@ -215,8 +233,8 @@
                 <Grid Background="LightGray" HorizontalAlignment="Stretch" Height="1" Margin="20 10"/>
                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right">
 
-                    <Button Content="Stop Timer" cal:Message.Attach="StopTimer()" HorizontalAlignment="Right" Width="100" Margin="0 10 10 10"/>
-                    <Button Content="Start Timer" cal:Message.Attach="StartTimer()" HorizontalAlignment="Right" Width="100" Margin="0 10 10 10"/>
+                    <Button Content="Stop Timer" cal:Message.Attach="StopTimerButton()" HorizontalAlignment="Right" Width="100" Margin="0 10 10 10"/>
+                    <Button Content="Start Timer" cal:Message.Attach="StartTimerButton()" HorizontalAlignment="Right" Width="100" Margin="0 10 10 10"/>
                 </StackPanel>
             </StackPanel>
         </Grid>
