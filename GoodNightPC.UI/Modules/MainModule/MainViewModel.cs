@@ -9,33 +9,10 @@ namespace GoodNightPC.UI.Modules.MainModule
 	{
 		private readonly PowerManager _powerManager;
 
-		private bool _durationModeChecked = true;
-		private bool _dateTimeModeChecked;
-
-		public bool DurationModeChecked
-		{
-			get => _durationModeChecked;
-			set
-			{
-				if (_durationModeChecked == value) return;
-				_durationModeChecked = value;
-				NotifyOfPropertyChange(() => DurationModeChecked);
-			}
-		}
-
-		public bool DateTimeModeChecked
-		{
-			get => _dateTimeModeChecked;
-			set
-			{
-				if (_dateTimeModeChecked == value) return;
-				_dateTimeModeChecked = value;
-				NotifyOfPropertyChange(() => DateTimeModeChecked);
-			}
-		}
-
-
 		#region Properties
+
+		#region Selected Time Properties
+
 		public List<TimeUnits> TimeUnits { get; set; }
 
 		private TimeUnits _selectedTimeUnit = Entities.Enums.TimeUnits.Second;
@@ -44,12 +21,11 @@ namespace GoodNightPC.UI.Modules.MainModule
 			get => _selectedTimeUnit;
 			set
 			{
-				if(value == _selectedTimeUnit) return;
+				if (value == _selectedTimeUnit) return;
 				_selectedTimeUnit = value;
 				NotifyOfPropertyChange(() => SelectedTimeUnit);
 			}
 		}
-
 
 		private int _timeDuration = 1;
 		public int TimeDuration
@@ -57,7 +33,7 @@ namespace GoodNightPC.UI.Modules.MainModule
 			get => _timeDuration;
 			set
 			{
-				if(value == _timeDuration) return;
+				if (value == _timeDuration) return;
 				_timeDuration = value;
 				NotifyOfPropertyChange(() => TimeDuration);
 			}
@@ -71,7 +47,7 @@ namespace GoodNightPC.UI.Modules.MainModule
 			get => _selectedDateTime;
 			set
 			{
-				if(value == _selectedDateTime) return;
+				if (value == _selectedDateTime) return;
 				_selectedDateTime = value;
 				NotifyOfPropertyChange(() => SelectedDateTime);
 			}
@@ -79,23 +55,7 @@ namespace GoodNightPC.UI.Modules.MainModule
 
 		#endregion
 
-		#region Constructor
-
-		public MainViewModel(PowerManager pm)
-		{
-			_powerManager = pm;
-			TimeUnits = new List<TimeUnits>()
-			{
-				Entities.Enums.TimeUnits.Second,
-				Entities.Enums.TimeUnits.Minute,
-				Entities.Enums.TimeUnits.Hour,
-				Entities.Enums.TimeUnits.Day
-			};
-		}
-
-		#endregion
-
-		#region Mode Properties
+		#region Power Mode Properties
 
 		private bool _shutdownIsChecked;
 		private bool _hibernateIsChecked;
@@ -148,6 +108,54 @@ namespace GoodNightPC.UI.Modules.MainModule
 
 		#endregion
 
+		#region Time Mode Properties
+
+		private bool _durationModeChecked = true;
+		private bool _dateTimeModeChecked;
+
+		public bool DurationModeChecked
+		{
+			get => _durationModeChecked;
+			set
+			{
+				if (_durationModeChecked == value) return;
+				_durationModeChecked = value;
+				NotifyOfPropertyChange(() => DurationModeChecked);
+			}
+		}
+
+		public bool DateTimeModeChecked
+		{
+			get => _dateTimeModeChecked;
+			set
+			{
+				if (_dateTimeModeChecked == value) return;
+				_dateTimeModeChecked = value;
+				NotifyOfPropertyChange(() => DateTimeModeChecked);
+			}
+		}
+
+		#endregion
+
+		#endregion
+
+		#region Constructor
+
+		public MainViewModel(PowerManager pm)
+		{
+			_powerManager = pm;
+			TimeUnits = new List<TimeUnits>()
+			{
+				Entities.Enums.TimeUnits.Second,
+				Entities.Enums.TimeUnits.Minute,
+				Entities.Enums.TimeUnits.Hour,
+				Entities.Enums.TimeUnits.Day
+			};
+		}
+
+		#endregion
+
+		
 		#region Methods
 
 		public void StartTimer()

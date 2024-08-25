@@ -36,7 +36,7 @@
         <!--MAIN-->
         <Grid Grid.Row="1" >
             <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
-                <StackPanel Orientation="Horizontal" Margin="20 10 0 0" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="0 10 0 0" HorizontalAlignment="Center">
 
                     <!--SHUTDOWN TOGGLE-->
                     <ToggleButton x:Name="ShutdownToggleButton" Margin="0" IsChecked="{Binding ShutdownIsChecked, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
@@ -155,10 +155,10 @@
 
                 <Grid Background="LightGray" HorizontalAlignment="Stretch" Height="1" Margin="20 10"/>
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 
                     <!--DURATION-->
-                    <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
                         <RadioButton x:Name="DurationRadioButton" GroupName="TimeGroup" IsChecked="{Binding DurationModeChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <StackPanel Orientation="Vertical" Margin="10 0 0 0">
                             <StackPanel.Style>
