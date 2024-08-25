@@ -11,10 +11,12 @@
   <ItemGroup>
     <None Remove="Resources\Icons\hibernate-white.png" />
     <None Remove="Resources\Icons\hibernate.png" />
+    <None Remove="Resources\Icons\play.png" />
     <None Remove="Resources\Icons\restart-white.png" />
     <None Remove="Resources\Icons\restart.png" />
     <None Remove="Resources\Icons\shutdown-white.png" />
     <None Remove="Resources\Icons\shutdown.png" />
+    <None Remove="Resources\Icons\stop.png" />
     <None Remove="Resources\Icons\timer.png" />
   </ItemGroup>
 
@@ -32,10 +34,12 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\hibernate-white.png" />
     <Resource Include="Resources\Icons\hibernate.png" />
+    <Resource Include="Resources\Icons\play.png" />
     <Resource Include="Resources\Icons\restart-white.png" />
     <Resource Include="Resources\Icons\restart.png" />
     <Resource Include="Resources\Icons\shutdown-white.png" />
     <Resource Include="Resources\Icons\shutdown.png" />
+    <Resource Include="Resources\Icons\stop.png" />
     <Resource Include="Resources\Icons\timer.png" />
   </ItemGroup>
 

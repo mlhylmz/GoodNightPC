@@ -51,7 +51,7 @@ namespace GoodNightPC.UI.Modules.MainModule
 			}
 		}
 
-		private int _timeDuration = 1;
+		private int _timeDuration = 60;
 		public int TimeDuration
 		{
 			get => _timeDuration;
@@ -179,7 +179,6 @@ namespace GoodNightPC.UI.Modules.MainModule
 
 		#endregion
 
-		
 		#region Methods
 
 		public void StartTimerButton()
@@ -224,7 +223,7 @@ namespace GoodNightPC.UI.Modules.MainModule
 			IsTimerWorking = false;
 		}
 
-		public void StopTimerButton()
+		public void CancelTimerButton()
 		{
 			_powerManager.StopAction();
 
