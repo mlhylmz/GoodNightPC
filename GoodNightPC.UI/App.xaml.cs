@@ -1,5 +1,4 @@
-﻿using System.Configuration;
-using System.Data;
+﻿using HandyControl.Tools;
 using System.Windows;
 
 namespace GoodNightPC.UI
@@ -9,6 +8,11 @@ namespace GoodNightPC.UI
 	/// </summary>
 	public partial class App : Application
 	{
+        public App()
+        {
+			ConfigHelper.Instance.SetLang("en");
+
+		}
 	}
 
 }
