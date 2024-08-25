@@ -31,19 +31,19 @@ namespace GoodNightPC.Business
 
 		private void Shutdown(CommandStructure command)
 		{
-			var prompt = $"/c shutdown /s /t {command.Duration.TotalSeconds}";
+			var prompt = $"/c shutdown /s /t {(int)command.Duration.TotalSeconds}";
 			SendToCommandPrompt(prompt);
 		}
 
 		private void Hibernate(CommandStructure command)
 		{
-			var prompt = $"/c shutdown /h /t {command.Duration.TotalSeconds}";
+			var prompt = $"/c shutdown /h /t {(int)command.Duration.TotalSeconds}";
 			SendToCommandPrompt(prompt);
 		}
 
 		private void Restart(CommandStructure command)
 		{
-			var prompt = $"/c shutdown /r /t {command.Duration.TotalSeconds}";
+			var prompt = $"/c shutdown /r /t {(int)command.Duration.TotalSeconds}";
 			SendToCommandPrompt(prompt);
 		}
 
