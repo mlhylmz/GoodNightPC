@@ -9,6 +9,30 @@ namespace GoodNightPC.UI.Modules.MainModule
 	{
 		private readonly PowerManager _powerManager;
 
+		private bool _durationModeChecked = true;
+		private bool _dateTimeModeChecked;
+
+		public bool DurationModeChecked
+		{
+			get => _durationModeChecked;
+			set
+			{
+				if (_durationModeChecked == value) return;
+				_durationModeChecked = value;
+				NotifyOfPropertyChange(() => DurationModeChecked);
+			}
+		}
+
+		public bool DateTimeModeChecked
+		{
+			get => _dateTimeModeChecked;
+			set
+			{
+				if (_dateTimeModeChecked == value) return;
+				_dateTimeModeChecked = value;
+				NotifyOfPropertyChange(() => DateTimeModeChecked);
+			}
+		}
 
 
 		#region Properties
@@ -38,6 +62,21 @@ namespace GoodNightPC.UI.Modules.MainModule
 				NotifyOfPropertyChange(() => TimeDuration);
 			}
 		}
+
+
+		private DateTime _selectedDateTime = DateTime.Now;
+
+		public DateTime SelectedDateTime
+		{
+			get => _selectedDateTime;
+			set
+			{
+				if(value == _selectedDateTime) return;
+				_selectedDateTime = value;
+				NotifyOfPropertyChange(() => SelectedDateTime);
+			}
+		}
+
 		#endregion
 
 		#region Constructor
@@ -133,22 +172,34 @@ namespace GoodNightPC.UI.Modules.MainModule
 
 		private TimeSpan GetDuration()
 		{
-			switch (SelectedTimeUnit)
+			if (DurationModeChecked)
 			{
-				case Entities.Enums.TimeUnits.Second:
-					return TimeSpan.FromSeconds(TimeDuration);
+				switch (SelectedTimeUnit)
+				{
+					case Entities.Enums.TimeUnits.Second:
+						return TimeSpan.FromSeconds(TimeDuration);
 
-				case Entities.Enums.TimeUnits.Minute:
-					return TimeSpan.FromMinutes(TimeDuration);
+					case Entities.Enums.TimeUnits.Minute:
+						return TimeSpan.FromMinutes(TimeDuration);
 
-				case Entities.Enums.TimeUnits.Hour:
-					return TimeSpan.FromHours(TimeDuration);
+					case Entities.Enums.TimeUnits.Hour:
+						return TimeSpan.FromHours(TimeDuration);
 
-				case Entities.Enums.TimeUnits.Day:
-					return TimeSpan.FromDays(TimeDuration);
+					case Entities.Enums.TimeUnits.Day:
+						return TimeSpan.FromDays(TimeDuration);
+				}
+			}
+			else if (DateTimeModeChecked)
+			{
+				TimeSpan timeDifference = SelectedDateTime - DateTime.Now;
+
+				if(timeDifference.TotalSeconds > 0)
+					return timeDifference;
+				else
+					return TimeSpan.Zero;
 			}
 
-			return TimeSpan.FromSeconds(0);
+			return TimeSpan.Zero;
 		}
 
 		#endregion
