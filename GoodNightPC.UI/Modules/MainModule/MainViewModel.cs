@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
 using GoodNightPC.Business;
-using GoodNightPC.Entities.DTO;
+//using GoodNightPC.Entities.
 using GoodNightPC.Entities.Enums;
+using GoodNightPC.Entities.POCO;
+using HandyControl.Controls;
 
 namespace GoodNightPC.UI.Modules.MainModule
 {
@@ -177,6 +179,12 @@ namespace GoodNightPC.UI.Modules.MainModule
 			};
 		}
 
+		protected override void OnViewLoaded(object view)
+		{
+			base.OnViewLoaded(view);
+			IsThereAWorkingCommand();
+		}
+
 		#endregion
 
 		#region Methods
@@ -261,6 +269,22 @@ namespace GoodNightPC.UI.Modules.MainModule
 			}
 
 			return TimeSpan.Zero;
+		}
+
+		private void IsThereAWorkingCommand()
+		{
+			var result = _powerManager.IsThereAWorkingCommand();
+			if (result.Exist)
+			{
+				var timeDifference = result.Command.CommandTime - DateTime.Now;
+
+				if (_timerCts != null)
+					_timerCts.Cancel();
+
+				_timerCts = new CancellationTokenSource();
+
+				Task.Run(() => StartTimer(timeDifference, _timerCts.Token));
+			}
 		}
 
 		#endregion

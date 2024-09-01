@@ -1,6 +1,6 @@
 ﻿using GoodNightPC.Entities.Enums;
 
-namespace GoodNightPC.Entities.DTO
+namespace GoodNightPC.Entities.POCO
 {
 	public class CommandStructure
 	{

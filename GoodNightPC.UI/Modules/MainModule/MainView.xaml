@@ -69,6 +69,11 @@
                                             </Setter.Value>
                                         </Setter>
                                     </Trigger>
+
+                                    <DataTrigger Binding="{Binding IsTimerWorking}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Opacity" Value="0.5"/>
+                                    </DataTrigger>
                                 </Style.Triggers>
 
                             </Style>
@@ -106,6 +111,11 @@
                                             </Setter.Value>
                                         </Setter>
                                     </Trigger>
+
+                                    <DataTrigger Binding="{Binding IsTimerWorking}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Opacity" Value="0.5"/>
+                                    </DataTrigger>
                                 </Style.Triggers>
 
                             </Style>
@@ -144,6 +154,11 @@
                                             </Setter.Value>
                                         </Setter>
                                     </Trigger>
+
+                                    <DataTrigger Binding="{Binding IsTimerWorking}" Value="True">
+                                        <Setter Property="IsEnabled" Value="False"/>
+                                        <Setter Property="Opacity" Value="0.5"/>
+                                    </DataTrigger>
                                 </Style.Triggers>
 
                             </Style>
@@ -156,6 +171,18 @@
                 <Grid Background="LightGray" HorizontalAlignment="Stretch" Height="1" Margin="20 10"/>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="Opacity" Value="1"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsTimerWorking}" Value="True">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                    <Setter Property="Opacity" Value="0.5"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
 
                     <!--DURATION-->
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
@@ -221,7 +248,7 @@
                         </Style.Triggers>
                     </Style>
                 </StackPanel.Style>
-                
+
                 <Image Source="../../Resources/Icons/timer.png" Width="50" Margin="0 5 10 0" VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality"/>
                 <TextBlock Foreground="DodgerBlue" Width="150" Text="{Binding CountDownTimer, StringFormat={}{0:hh\\:mm\\:ss}}" FontWeight="Light" FontSize="40" VerticalAlignment="Center"/>
             </StackPanel>
@@ -246,7 +273,7 @@
                                     </Setter.Value>
                                 </Setter>
                                 <Setter Property="cal:Message.Attach" Value="StartTimerButton()"/>
-                                
+
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsTimerWorking}" Value="True">
                                         <Setter Property="ContentTemplate">
