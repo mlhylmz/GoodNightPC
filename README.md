@@ -2,7 +2,7 @@
 <body>
   <h1>GoodNightPC</h1>
 
-  <p>GoodNightPC is a simple Windows Presentation Foundation (WPF) application designed to automatically shut down or restart your computer after a specified amount of time. Set a timer, and let GoodNightPC take care of the rest!</p>
+  <p>GoodNightPC is a simple Windows Presentation Foundation (WPF) application designed to shut down or restart your computer at a second, minute, hour or day that you set. Set a timer, and let GoodNightPC take care of the rest!</p>
 
   <h2>Features</h2>
   <ul>
