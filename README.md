@@ -33,7 +33,13 @@
     </div>
     
 
-
+ <h2>Technologies</h2>
+ <ul>
+    <li>C#</li>
+    <li>WPF</li>
+    <li>MVVM • Caliburn Micro</li>
+  </ul>
+  
   <h2>Code Installation</h2>
   <ol>
     <li><strong>Clone the repository.</li>
