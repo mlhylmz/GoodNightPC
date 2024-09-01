@@ -76,7 +76,7 @@
                     </ToggleButton>
 
                     <!--HIBERNATE TOGGLE-->
-                    <ToggleButton x:Name="HibernateToggleButton" IsChecked="{Binding HibernateIsChecked, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
+                    <ToggleButton Visibility="Collapsed" x:Name="HibernateToggleButton" IsChecked="{Binding HibernateIsChecked, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}">
                         <ToggleButton.Style>
                             <Style TargetType="ToggleButton" BasedOn="{StaticResource ModeToggleStyle}">
                                 <Setter Property="ContentTemplate">
