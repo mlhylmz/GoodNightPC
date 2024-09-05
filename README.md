@@ -59,6 +59,6 @@
   <p>This project is licensed under the GNU General Public License v3.0 - see the LICENSE file for details.</p>
 
   <h2>Contact</h2>
-  <p>For any questions or issues, please contact me at your_email@example.com</p>
+  <p>For any questions or issues, please contact me at melihyilmaz2645@gmail.com</p>
 </body>
 </html>
